@@ -1,8 +1,4 @@
-require.paths.unshift(__dirname);
-require.paths.unshift(__dirname+'/../lib/server');
-require.paths.unshift(__dirname+'/deps');
-
-var sys = require("sys"),  
+var util = require("util"),  
     http = require("http"),  
     url = require("url"),  
     path = require("path"),  
@@ -10,7 +6,7 @@ var sys = require("sys"),
 	ws = require("ws"),
 	io = require('socket.io');
 
-var Pluto = require('pluto').Pluto;
+var Pluto = require('../lib/server/pluto').Pluto;
 
 var WEB_SERVER_PORT = 3000,
 	WEB_SERVER_DOCROOT = 'public/',
@@ -29,7 +25,7 @@ var webServer = http.createServer(function(request, response) {
 	} else {
 		filename = path.join(__dirname, WEB_SERVER_DOCROOT, uri);
 	}
-    sys.puts("Loading "+filename);
+    util.puts("Loading "+filename);
     path.exists(filename, function(exists) {  
         if(!exists) {  
             response.writeHead(404);  
@@ -55,7 +51,7 @@ var webServer = http.createServer(function(request, response) {
 
 webServer.listen(WEB_SERVER_PORT);  
   
-sys.puts("Web server running at http://localhost:"+WEB_SERVER_PORT+"/");
+util.puts("Web server running at http://localhost:"+WEB_SERVER_PORT+"/");
 
 // BIND PLUTO TO A TRANSPORT CHANNEL (SOCKET.IO)
 
@@ -71,7 +67,7 @@ socket.on('connection', function(client){
 	plutoServer.addClient(client);
 	
 	client.on('message', function(data) {
-		sys.puts("Received DATA " + data);
+		util.puts("Received DATA " + data);
 		plutoServer.update(client, data);
 	}) 
     client.on('disconnect', function() { 
@@ -80,4 +76,4 @@ socket.on('connection', function(client){
 	
 });
 
-sys.puts("WebSocket server running at http://localhost:"+WEB_SERVER_PORT+"/");
+util.puts("WebSocket server running at http://localhost:"+WEB_SERVER_PORT+"/");

@@ -2,29 +2,41 @@
   "name": "pluto",
   "description": "pluto(t) is an extensible operational transofrm service container for NodeRed and Node.js",
   "version": "0.1.2",
-  "keywords": [ "operational transform", "pubsub", "server", "framework" ],
+  "keywords": [
+    "operational transform",
+    "pubsub",
+    "server",
+    "framework"
+  ],
   "author": "Andrew Jessup <ajessup@gmail.com>",
-  "licenses": [ "MIT" ],
+  "licenses": [
+    "MIT"
+  ],
   "repositories": {
     "type": "git",
     "url": "http://github.com/ajessup/pluto.git"
   },
-  "bugs": { "web": "http://github.com/ajessup/pluto/issues" },
-  "directories": { 
-	"lib": "./lib" /*, 
-	"test": "./test" */
+  "bugs": {
+    "web": "http://github.com/ajessup/pluto/issues"
   },
-  "os": [ "linux", "darwin" ],
-  "modules" : {
-	 "pluto/server" : "./lib/server",
-	 "pluto/shared" : "./lib/shared",
-	 "pluto/client" : "./lib/client"
+  "directories": {
+    "lib": "./lib"
   },
-  "dependencies" : { 
-	  "nodeunit" : ">=0.1.0",
-	  "socket.io" : ">=0.6.1"
+  "os": [
+    "linux",
+    "darwin"
+  ],
+  "modules": {
+    "pluto/server": "./lib/server",
+    "pluto/shared": "./lib/shared",
+    "pluto/client": "./lib/client"
   },
-  "engines": { 
-	"node": ">0.1.91"
+  "dependencies": {
+    "nodeunit": "~0.7.1",
+    "socket.io": ">=0.6.1",
+    "ws": "~0.4.6"
+  },
+  "engines": {
+    "node": ">0.1.91"
   }
 }
